@@ -7,14 +7,14 @@
 from setuptools import setup, find_packages
 
 # metadata
-VERSION = (0, 0, 0)
+VERSION = (0, 0, 1)
 __version__ = '.'.join(map(str, VERSION))
 
 setup(
     name="django-xls2po",
     version=__version__,
     packages=find_packages(),
-    install_requires=['django-rosetta==0.7.4', 'polib==1.0.3', 'xlrd==0.9.2', ],
+    install_requires=['django-rosetta==0.7.3', 'polib==1.0.3', 'xlrd==0.9.2', ],
     author="Alexei Andrushievich",
     author_email="vint21h@vint21h.pp.ua",
     description="django-xls2po is a django management command to convert django-po2xls generated .xls files to .po files",

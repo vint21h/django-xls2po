@@ -32,7 +32,7 @@ Add ``'xls2po'`` to ``settings.INSTALLED_APPS``.
 
 Usage
 -----
-Just run ``xls-to-po`` django management command.
+Just run ``xls-to-po`` django management command after ``po-to-xls``.
 
 Licensing
 ---------
