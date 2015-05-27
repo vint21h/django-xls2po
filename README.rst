@@ -1,8 +1,8 @@
-.. xls2po
+.. django-xls2po
 .. README.rst
 
 A django-xls2po documentation
-===================================
+=============================
 
     *django-xls2po is a django management command to convert django-po2xls generated .xls files to .po files*
 
@@ -19,12 +19,12 @@ Installation
 
 Configuration
 -------------
-Add ``'xls2po'`` to ``settings.INSTALLED_APPS``.
+Add ``"xls2po"`` to ``settings.INSTALLED_APPS``.
 
     INSTALLED_APPS = (
         ...,
 
-        'xls2po',
+        "xls2po",
 
         ...,
 
@@ -44,3 +44,5 @@ Contacts
 **Project Website**: https://github.com/vint21h/django-xls2po
 
 **Author**: Alexei Andrushievich <vint21h@vint21h.pp.ua>
+
+For other authors list see AUTHORS file.

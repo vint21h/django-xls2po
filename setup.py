@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# xls2po
+# django-xls2po
 # setup.py
 
+from __future__ import unicode_literals
 from setuptools import setup, find_packages
 
 # metadata
-VERSION = (0, 0, 1)
-__version__ = '.'.join(map(str, VERSION))
+VERSION = (0, 1, 0)
+__version__ = ".".join(map(str, VERSION))
 
 setup(
     name="django-xls2po",
     version=__version__,
     packages=find_packages(),
-    install_requires=['django-rosetta==0.7.3', 'polib==1.0.3', 'xlrd==0.9.2', ],
+    install_requires=["django-rosetta==0.7.6", "polib==1.0.6", "xlrd==0.9.3", ],
     author="Alexei Andrushievich",
     author_email="vint21h@vint21h.pp.ua",
     description="django-xls2po is a django management command to convert django-po2xls generated .xls files to .po files",
@@ -31,5 +32,9 @@ setup(
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
         "Topic :: Utilities",
+        "Framework :: Django :: 1.5",
+        "Framework :: Django :: 1.6",
+        "Framework :: Django :: 1.7",
+        "Framework :: Django :: 1.8",
     ]
 )
