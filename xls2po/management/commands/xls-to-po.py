@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# xls2po
-# management/commands/xls-to-po.py
+# django-xls2po
+# xls2po/management/commands/xls-to-po.py
 
+from __future__ import unicode_literals
 import os
 from optparse import make_option
 
@@ -19,20 +20,20 @@ class Command(BaseCommand):
     Convert django-xls2po generated .xls files to .po.
     """
 
-    _all = u'all'
+    _all = "all"
 
     option_list = BaseCommand.option_list + (
-        make_option('--language', '-l', dest='language', help=u'Language', default=_all),
-        make_option('--quiet', '-q', dest='quiet', help=u'Be quiet', default=False, action="store_true"),
+        make_option("--language", "-l", dest="language", help="Language", default=_all),
+        make_option("--quiet", "-q", dest="quiet", help="Be quiet", default=False, action="store_true"),
     )
 
     def handle(self, *args, **kwargs):
 
-        if kwargs['language'] == self._all:
+        if kwargs["language"] == self._all:
             for language in dict(settings.LANGUAGES).keys():
                 self._parse(language)
         else:
-            self._parse(kwargs['language'])
+            self._parse(kwargs["language"])
 
     def _parse(self, language, *args, **kwargs):
 
@@ -47,4 +48,4 @@ class Command(BaseCommand):
         path, f = os.path.split(f)
         f, ext = os.path.splitext(f)
 
-        return os.path.join(path, u"%s.xls" % f)
+        return os.path.join(path, "%s.xls" % f)

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# xls2po
-# management/commands/__init__.py
+# django-xls2po
+# xls2po/management/commands/__init__.py
 
-__all__ = ['xls-to-po', ]
+from __future__ import unicode_literals
+
+__all__ = ["xls-to-po", ]
