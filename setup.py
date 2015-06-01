@@ -8,7 +8,7 @@ from __future__ import unicode_literals
 from setuptools import setup, find_packages
 
 # metadata
-VERSION = (0, 1, 0)
+VERSION = (0, 1, 1)
 __version__ = ".".join(map(str, VERSION))
 
 setup(
@@ -21,7 +21,7 @@ setup(
     description="django-xls2po is a django management command to convert django-po2xls generated .xls files to .po files",
     license="GPLv3 or later",
     url="https://github.com/vint21h/django-xls2po",
-    download_url="https://github.com/vint21h/django-xls2po/archive/%s.tar.gz" % __version__,
+    download_url="https://github.com/vint21h/django-xls2po/archive/{version}.tar.gz".format(version=__version__),
     zip_safe=False,
     include_package_data=True,
     classifiers=[
