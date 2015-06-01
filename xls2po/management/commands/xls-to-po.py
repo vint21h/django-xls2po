@@ -48,4 +48,4 @@ class Command(BaseCommand):
         path, f = os.path.split(f)
         f, ext = os.path.splitext(f)
 
-        return os.path.join(path, "%s.xls" % f)
+        return os.path.join(path, "{f}.xls".format(f=f))
