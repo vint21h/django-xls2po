@@ -4,11 +4,10 @@
 # django-xls2po
 # setup.py
 
-from __future__ import unicode_literals
 from setuptools import setup, find_packages
 
 # metadata
-VERSION = (0, 1, 2)
+VERSION = (0, 1, 3)
 __version__ = ".".join(map(str, VERSION))
 
 setup(
