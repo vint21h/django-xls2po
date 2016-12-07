@@ -14,21 +14,19 @@ django-xls2po does not support plural.
 
 Installation
 ------------
-* Obtain your copy of source code from git repository: ``git clone https://github.com/vint21h/django-xls2po.git``. Or download latest release from https://github.com/vint21h/django-xls2po/tags.
+* Obtain your copy of source code from the git repository: ``git clone https://github.com/vint21h/django-xls2po.git``. Or download the latest release from https://github.com/vint21h/django-xls2po/tags/.
 * Run ``python ./setup.py install`` from repository source tree or unpacked archive. Or use pip: ``pip install django-xls2po``.
 
 Configuration
 -------------
 Add ``"xls2po"`` to ``settings.INSTALLED_APPS``.
 
-    INSTALLED_APPS = (
-        ...,
+.. code-block:: python
 
+    INSTALLED_APPS += (
         "xls2po",
-
-        ...,
-
     )
+
 
 Usage
 -----
@@ -41,7 +39,7 @@ For complete license text see COPYING file.
 
 Contacts
 --------
-**Project Website**: https://github.com/vint21h/django-xls2po
+**Project Website**: https://github.com/vint21h/django-xls2po/
 
 **Author**: Alexei Andrushievich <vint21h@vint21h.pp.ua>
 
