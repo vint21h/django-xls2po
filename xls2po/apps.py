@@ -7,10 +7,13 @@ from __future__ import unicode_literals
 
 from django.apps import AppConfig
 
-__all__ = ["XlsToPoConfig", ]
+
+__all__ = [
+    "Config",
+]
 
 
-class XlsToPoConfig(AppConfig):
+class Config(AppConfig):
 
     name = "xls2po"
     verbose_name = ".xls to .po"
