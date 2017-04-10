@@ -10,7 +10,7 @@ from setuptools import (
 )
 
 # metadata
-VERSION = (0, 2, 0)
+VERSION = (0, 3, 0)
 __version__ = ".".join(map(str, VERSION))
 setup(
     name="django-xls2po",
@@ -18,7 +18,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "Django",
-        "django-rosetta==0.7.12",
+        "django-rosetta==0.7.13",
         "polib==1.0.8",
         "xlrd==1.0.0",
     ],
@@ -35,15 +35,12 @@ setup(
         "Environment :: Plugins",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: Unix",
-        "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Topic :: Utilities",
-        "Framework :: Django :: 1.5",
-        "Framework :: Django :: 1.6",
-        "Framework :: Django :: 1.7",
         "Framework :: Django :: 1.8",
         "Framework :: Django :: 1.9",
         "Framework :: Django :: 1.10",
+        "Framework :: Django :: 1.11",
     ]
 )
