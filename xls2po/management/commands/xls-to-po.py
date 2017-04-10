@@ -5,7 +5,6 @@
 
 from __future__ import unicode_literals
 import os
-from optparse import make_option
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -20,20 +19,22 @@ class Command(BaseCommand):
     Convert django-xls2po generated .xls files to .po.
     """
 
-    all = "all"
+    ALL = "all"
 
-    option_list = BaseCommand.option_list + (
-        make_option("--language", "-l", dest="language", help="Language", default=all),
-        make_option("--quiet", "-q", dest="quiet", help="Be quiet", default=False, action="store_true"),
-    )
+    def add_arguments(self, parser):
+
+        parser.add_argument("--language", "-l", dest="language", help="Language", default=self.ALL)
+        parser.add_argument("--quiet", "-q", dest="quiet", help="Be quiet", default=False, action="store_true")
 
     def handle(self, *args, **kwargs):
 
-        if kwargs["language"] == self.all:
-            for language in dict(settings.LANGUAGES).keys():
-                self.convert(language)
+        language = kwargs.pop("language")
+
+        if all([language == self.ALL, settings.LANGUAGES, ]):
+            for language in list(dict(settings.LANGUAGES).keys()):
+                self.convert(language=language)
         else:
-            self.convert(kwargs["language"])
+            self.convert(language=language)
 
     def convert(self, language, *args, **kwargs):
         """
