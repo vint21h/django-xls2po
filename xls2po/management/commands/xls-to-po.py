@@ -11,7 +11,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from rosetta.poutil import find_pos
 
-from xls2po.utils import XlsToPo
+from xls2po.converters import XlsToPo
 
 
 __all__ = ["Command"]  # type: List[str]
