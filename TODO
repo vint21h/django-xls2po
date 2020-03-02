@@ -1,0 +1,5 @@
+# django-xls2po
+# TODO
+
+ - Add application param to management command
+ - Add converter from CSV and format param to management command

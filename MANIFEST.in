@@ -1,6 +1,10 @@
 # django-xls2po
 # MANIFEST.in
 
+
+prune tests*
 include README.rst
 include COPYING
 include AUTHORS
+recursive-include xls2po *.po
+recursive-include xls2po *.mo
