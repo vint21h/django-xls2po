@@ -3,18 +3,17 @@
 # django-xls2po
 # xls2po/utils.py
 
-from __future__ import unicode_literals
-import sys
-import os
+
 import logging
+import os
+import sys
+from typing import List  # pylint: disable=W0611
 
 import polib
 import xlrd
 
 
-__all__ = [
-    "XlsToPo",
-]
+__all__ = ["XlsToPo"]  # type: List[str]
 
 
 class XlsToPo(object):
@@ -33,8 +32,12 @@ class XlsToPo(object):
             self.src = src
         else:
             if not self.quiet:
-                sys.stderr.write("ERROR: File '{src}' does not exists.".format(**{"src": src, }))
-            self.logger.error("ERROR: File '{src}' does not exists.".format(**{"src": src, }))
+                sys.stderr.write(
+                    "ERROR: File '{src}' does not exists.".format(**{"src": src,})
+                )
+            self.logger.error(
+                "ERROR: File '{src}' does not exists.".format(**{"src": src,})
+            )
             sys.exit(-1)
 
         self.xls = xlrd.open_workbook(self.src)
@@ -50,7 +53,7 @@ class XlsToPo(object):
         path, src = os.path.split(self.src)
         src, ext = os.path.splitext(src)
 
-        return os.path.join(path, "{src}.po".format(**{"src": src, }))
+        return os.path.join(path, "{src}.po".format(**{"src": src,}))
 
     def metadata(self):
         """
@@ -77,10 +80,7 @@ class XlsToPo(object):
 
         for row_i in range(1, n):
             row = sheet.row_values(row_i)
-            entry = polib.POEntry(
-                msgid=row[0],
-                msgstr=row[1],
-            )
+            entry = polib.POEntry(msgid=row[0], msgstr=row[1],)
             self.po.append(entry)
 
     def convert(self, *args, **kwargs):

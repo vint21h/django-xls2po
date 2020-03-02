@@ -3,15 +3,18 @@
 # django-xls2po
 # xls2po/management/commands/xls-to-po.py
 
-from __future__ import unicode_literals
+
 import os
+from typing import List  # pylint: disable=W0611
 
-from django.core.management.base import BaseCommand
 from django.conf import settings
-
+from django.core.management.base import BaseCommand
 from rosetta.poutil import find_pos
 
 from xls2po.utils import XlsToPo
+
+
+__all__ = ["Command"]  # type: List[str]
 
 
 class Command(BaseCommand):
@@ -23,14 +26,23 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
 
-        parser.add_argument("--language", "-l", dest="language", help="Language", default=self.ALL)
-        parser.add_argument("--quiet", "-q", dest="quiet", help="Be quiet", default=False, action="store_true")
+        parser.add_argument(
+            "--language", "-l", dest="language", help="Language", default=self.ALL
+        )
+        parser.add_argument(
+            "--quiet",
+            "-q",
+            dest="quiet",
+            help="Be quiet",
+            default=False,
+            action="store_true",
+        )
 
     def handle(self, *args, **kwargs):
 
         language = kwargs.pop("language")
 
-        if all([language == self.ALL, settings.LANGUAGES, ]):
+        if all([language == self.ALL, settings.LANGUAGES,]):
             for language in list(dict(settings.LANGUAGES).keys()):
                 self.convert(language=language)
         else:
@@ -58,4 +70,4 @@ class Command(BaseCommand):
         path, f = os.path.split(f)
         f, ext = os.path.splitext(f)
 
-        return os.path.join(path, "{f}.xls".format(**{"f": f, }))
+        return os.path.join(path, "{f}.xls".format(**{"f": f,}))

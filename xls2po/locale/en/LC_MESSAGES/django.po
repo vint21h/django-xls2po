@@ -1,0 +1,21 @@
+# django-xls2po
+# xls2po/locale/en/LC_MESSAGES/django.po
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: django-xls2po 0.3.0\n"
+"Report-Msgid-Bugs-To: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
+"POT-Creation-Date: 2020-03-02 23:41+0200\n"
+"PO-Revision-Date: 2020-03-02 23:41+0200\n"
+"Last-Translator: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
+"Language-Team: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: xls2po/apps.py:22
+msgid "Convert django-po2xls generated .xls files to .po files"
+msgstr ""

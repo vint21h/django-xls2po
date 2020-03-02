@@ -3,7 +3,8 @@
 # django-xls2po
 # xls2po/management/__init__.py
 
-from __future__ import unicode_literals
+
+from typing import List  # pylint: disable=W0611
 
 
-__all__ = []
+__all__ = []  # type: List[str]
