@@ -4,14 +4,18 @@
 # xls2po/management/commands/xls-to-po.py
 
 
-import os
-from typing import List  # pylint: disable=W0611
+import logging
+import pathlib
+import sys
+from typing import Any, Dict, List  # pylint: disable=W0611
 
 from django.conf import settings
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
+from django.utils.translation import ugettext_lazy as _
 from rosetta.poutil import find_pos
 
 from xls2po.converters import XlsToPo
+from xls2po.exceptions import ConversionError
 
 
 __all__ = ["Command"]  # type: List[str]
@@ -23,51 +27,93 @@ class Command(BaseCommand):
     """
 
     ALL = "all"
+    help = str(_("Convert django-xls2po generated .xls files to .po"))
+    logger = logging.getLogger(__name__)
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
+        """
+        Add command arguments.
+
+        :param parser: command arguments parser instance.
+        :type parser: django.core.management.base.CommandParser.
+        :return: nothing.
+        :rtype: None.
+        """
 
         parser.add_argument(
-            "--language", "-l", dest="language", help="Language", default=self.ALL
+            "--locale",
+            "-l",
+            dest="locale",
+            help=_("Locale to convert"),
+            default=self.ALL,
+            required=True,
+            metavar="LOCALE",
+            type=str,
         )
         parser.add_argument(
             "--quiet",
             "-q",
             dest="quiet",
-            help="Be quiet",
+            help=_("Be quiet"),
             default=False,
             action="store_true",
         )
 
-    def handle(self, *args, **kwargs):
+    def handle(self, *args: List[Any], **kwargs: Dict[str, Any]) -> None:
+        """
+        Run command.
 
-        language = kwargs.pop("language")
+        :param args: additional args.
+        :type args: List[Any].
+        :param kwargs: additional args.
+        :type kwargs: Dict[str, Any].
+        :return: nothing.
+        :rtype: None.
+        """
 
-        if all([language == self.ALL, settings.LANGUAGES,]):
-            for language in list(dict(settings.LANGUAGES).keys()):
-                self.convert(language=language)
-        else:
-            self.convert(language=language)
+        locale = kwargs.get("locale", settings.DEFAULT_LANGUAGE)
 
-    def convert(self, language, *args, **kwargs):
+        if all([locale == self.ALL, settings.LANGUAGES]):
+            for language in dict(settings.LANGUAGES):
+                self.convert(locale=language, **kwargs)
+        elif all([settings.LANGUAGES, locale in dict(settings.LANGUAGES)]):
+            self.convert(locale=locale, **kwargs)  # type: ignore
+
+    def convert(self, locale: str, *args: List[Any], **kwargs: Dict[str, Any]) -> None:
         """
         Run converter.
-        Args:
-            language: (unicode) language code.
+
+        :param locale: locale to process.
+        :type locale: str
+        :param args: additional args.
+        :type args: List[Any].
+        :param kwargs: additional args.
+        :type kwargs: Dict[str, Any].
+        :return: nothing.
+        :rtype: None.
         """
 
-        for f in find_pos(language):
-            XlsToPo(self.input(f), **kwargs).convert()
+        quiet = kwargs.get("quiet", False)
 
-    def input(self, f):
+        for po in find_pos(lang=locale):
+            try:
+                XlsToPo(src=str(self.input(src=po)), **kwargs).convert()
+            except ConversionError as error:
+                if not quiet:
+                    self.stderr.write(str(error))
+                self.logger.error(error)
+
+                sys.exit(-1)
+
+    @staticmethod
+    def input(src: pathlib.Path) -> pathlib.Path:
         """
         Create full path for .xls file.
-        Args:
-            f: (unicode) ".po" file path.
-        Returns:
-            unicode: path to ".po" file.
+
+        :param src: path to .po file.
+        :type src: pathlib.Path.
+        :return: path to .xls file.
+        :rtype: pathlib.Path.
         """
 
-        path, f = os.path.split(f)
-        f, ext = os.path.splitext(f)
-
-        return os.path.join(path, "{f}.xls".format(**{"f": f,}))
+        return src.parent.joinpath(f"{src.stem}.xls")
