@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-xls2po 0.3.0\n"
 "Report-Msgid-Bugs-To: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
-"POT-Creation-Date: 2020-03-02 23:41+0200\n"
+"POT-Creation-Date: 2020-03-03 11:48+0200\n"
 "PO-Revision-Date: 2020-03-02 23:41+0200\n"
 "Last-Translator: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
 "Language-Team: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
@@ -16,6 +16,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 
-#: xls2po/apps.py:22
+#: xls2po/apps.py:23
 msgid "Convert django-po2xls generated .xls files to .po files"
-msgstr ""
+msgstr "Convert django-po2xls generated .xls files to .po files"
+
+#: xls2po/management/commands/xls-to-po.py:30
+msgid "Convert django-xls2po generated .xls files to .po"
+msgstr "Convert django-xls2po generated .xls files to .po"
+
+#: xls2po/management/commands/xls-to-po.py:47
+msgid "Locale to convert"
+msgstr "Locale to convert"
+
+#: xls2po/management/commands/xls-to-po.py:57
+msgid "Be quiet"
+msgstr "Be quiet"
