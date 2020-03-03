@@ -28,7 +28,7 @@ class Command(BaseCommand):
 
     ALL = "all"
     help = str(_("Convert django-xls2po generated .xls files to .po"))
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger(name=__name__)
 
     def add_arguments(self, parser: CommandParser) -> None:
         """
@@ -71,7 +71,7 @@ class Command(BaseCommand):
         :rtype: None.
         """
 
-        locale = kwargs.get("locale", settings.DEFAULT_LANGUAGE)
+        locale = kwargs.get("locale", self.ALL)
 
         if all([locale == self.ALL, settings.LANGUAGES]):
             for language in dict(settings.LANGUAGES):

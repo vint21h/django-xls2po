@@ -49,6 +49,7 @@ LOCALE_PATHS = ["xls2po/locale"]  # type: List[str]
 # add testing related apps
 INSTALLED_APPS = [
     "django_nose",
+    "po2xls",
     "xls2po",
 ]  # type: List[str]
 

@@ -44,7 +44,7 @@ class XlsToPo(object):
             raise ConversionError(f"ERROR: File '{src}' does not exists.")
 
         try:
-            self.xls = xlrd.open_workbook(self.src)  # type: xlrd.Workbook
+            self.xls = xlrd.open_workbook(filename=self.src)  # type: xlrd.Workbook
         except (ValueError, IOError) as error:
             raise ConversionError(f"ERROR: '{src}' - file problem: {error}")
 
@@ -71,11 +71,13 @@ class XlsToPo(object):
         :rtype: None.
         """
 
-        sheet = self.xls.sheet_by_name(self.METADATA_SHEET_NAME)  # type: xlrd.Worksheet
+        sheet = self.xls.sheet_by_name(
+            sheet_name=self.METADATA_SHEET_NAME
+        )  # type: xlrd.Worksheet
         metadata = {}  # type: Dict[str, str]
 
         for row_i in range(1, sheet.nrows):
-            row = sheet.row_values(row_i)
+            row = sheet.row_values(rowx=row_i)
             metadata[row[0]] = row[1]
 
         self.po.metadata = metadata
@@ -88,10 +90,12 @@ class XlsToPo(object):
         :rtype: None.
         """
 
-        sheet = self.xls.sheet_by_name(self.STRINGS_SHEET_NAME)  # type: xlrd.Worksheet
+        sheet = self.xls.sheet_by_name(
+            sheet_name=self.STRINGS_SHEET_NAME
+        )  # type: xlrd.Worksheet
 
         for row_i in range(1, sheet.nrows):
-            row = sheet.row_values(row_i)  # type: List[xlrd.sheet.Cell]
+            row = sheet.row_values(rowx=row_i)  # type: List[xlrd.sheet.Cell]
             entry = polib.POEntry(msgid=row[0], msgstr=row[1])  # type: polib.POEntry
             self.po.append(entry)
 
@@ -110,4 +114,4 @@ class XlsToPo(object):
         self.metadata()
         self.strings()
 
-        self.po.save(self.output(src=self.src))
+        self.po.save(fpath=self.output(src=self.src))
