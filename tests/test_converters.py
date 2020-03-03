@@ -90,7 +90,7 @@ class XlsToPoTest(TestCase):
 
     def test_convert(self):
         """
-        convert method must write converted data to .xls file.
+        convert method must write converted data to .po file.
         """
 
         XlsToPo(src="xls2po/locale/uk/LC_MESSAGES/django.xls").convert()
