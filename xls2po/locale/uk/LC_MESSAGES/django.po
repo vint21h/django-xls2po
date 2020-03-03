@@ -1,7 +1,4 @@
-# django-xls2po
-# xls2po/locale/uk/LC_MESSAGES/django.po
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: django-xls2po 0.3.0\n"
@@ -14,22 +11,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 :  n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 :  n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-
-#: xls2po/apps.py:23
 msgid "Convert django-po2xls generated .xls files to .po files"
 msgstr "Конвертер .xls згенерованих django-po2xls у .po"
 
-#: xls2po/management/commands/xls-to-po.py:30
 msgid "Convert django-xls2po generated .xls files to .po"
 msgstr "Конвертувати файли .xls згенеровані django-po2xls у .po"
 
-#: xls2po/management/commands/xls-to-po.py:47
 msgid "Locale to convert"
 msgstr "Локаль конвертації"
 
-#: xls2po/management/commands/xls-to-po.py:57
 msgid "Be quiet"
 msgstr "Be quiet"

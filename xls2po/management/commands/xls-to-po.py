@@ -97,7 +97,7 @@ class Command(BaseCommand):
 
         for po in find_pos(lang=locale):
             try:
-                XlsToPo(src=str(self.input(src=po)), **kwargs).convert()
+                XlsToPo(src=str(self.input(src=pathlib.Path(po))), **kwargs).convert()
             except ConversionError as error:
                 if not quiet:
                     self.stderr.write(str(error))

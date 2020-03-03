@@ -11,12 +11,12 @@ from typing import List  # pylint: disable=W0611
 
 from django.test import TestCase
 
-# po-to-xls management command imported on the fly
-# because we can't import something from the module that contains "-"
 from xls2po.converters import XlsToPo
 from xls2po.exceptions import ConversionError
 
 
+# po-to-xls management command imported on the fly
+# because we can't import something from the module that contains "-"
 PoToXlsCommand = import_module("po2xls.management.commands.po-to-xls").Command  # type: ignore  # noqa: E501
 
 
