@@ -24,7 +24,7 @@ msgstr "Конвертер .xls згенерованих django-po2xls у .po"
 
 #: xls2po/management/commands/xls-to-po.py:30
 msgid "Convert django-xls2po generated .xls files to .po"
-msgstr "Конвертуваи файли .xls згенеровані django-po2xls у .po"
+msgstr "Конвертувати файли .xls згенеровані django-po2xls у .po"
 
 #: xls2po/management/commands/xls-to-po.py:47
 msgid "Locale to convert"
