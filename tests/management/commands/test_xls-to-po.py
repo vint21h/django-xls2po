@@ -10,6 +10,7 @@ import pathlib
 from typing import List  # pylint: disable=W0611
 
 from django.test import TestCase
+import git
 
 
 # po-to-xls and xls-to-po management commands imported on the fly
@@ -27,21 +28,18 @@ class CommandTest(TestCase):
     """
 
     @classmethod
-    def setUp(cls):
-        """
-        Set up.
-        """
-
-        PoToXlsCommand().handle()
-
-    @classmethod
     def tearDownClass(cls):
         """
         Tear down.
         """
 
-        os.remove("xls2po/locale/uk/LC_MESSAGES/django.xls")
         os.remove("xls2po/locale/en/LC_MESSAGES/django.xls")
+        os.remove("xls2po/locale/uk/LC_MESSAGES/django.xls")
+
+        # revert converted .po files state to avoid commit them in local development
+        repo = git.Repo(".")  # type: git.Repo
+        repo.index.checkout(["xls2po/locale/en/LC_MESSAGES/django.po"], force=True)
+        repo.index.checkout(["xls2po/locale/uk/LC_MESSAGES/django.po"], force=True)
 
         super().tearDownClass()
 

@@ -4,7 +4,6 @@
 # tests/test_converters.py
 
 
-from importlib import import_module
 import os
 import pathlib
 from typing import List  # pylint: disable=W0611
@@ -17,11 +16,6 @@ import xlrd
 
 from xls2po.converters import XlsToPo
 from xls2po.exceptions import ConversionError
-
-
-# po-to-xls management command imported on the fly
-# because we can't import something from the module that contains "-"
-PoToXlsCommand = import_module("po2xls.management.commands.po-to-xls").Command  # type: ignore  # noqa: E501
 
 
 __all__ = ["XlsToPoTest"]  # type: List[str]
@@ -38,7 +32,7 @@ class XlsToPoTest(TestCase):
         Set up.
         """
 
-        PoToXlsCommand().handle()
+        PoToXls(src="xls2po/locale/uk/LC_MESSAGES/django.po").convert()
 
     @classmethod
     def tearDownClass(cls):
@@ -46,12 +40,11 @@ class XlsToPoTest(TestCase):
         Tear down.
         """
 
-        os.remove("xls2po/locale/en/LC_MESSAGES/django.xls")
         os.remove("xls2po/locale/uk/LC_MESSAGES/django.xls")
 
-        # reset git repo state to avoid commit changed .po files
-        repo = git.Repo(".")
-        repo.git.reset("--hard")
+        # revert converted .po files state to avoid commit them in local development
+        repo = git.Repo(".")  # type: git.Repo
+        repo.index.checkout(["xls2po/locale/uk/LC_MESSAGES/django.po"], force=True)
 
         super().tearDownClass()
 
