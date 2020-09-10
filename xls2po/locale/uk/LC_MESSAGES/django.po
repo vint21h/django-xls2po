@@ -4,9 +4,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: django-xls2po 0.5.2\n"
+"Project-Id-Version: django-xls2po 0.6.0\n"
 "Report-Msgid-Bugs-To: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
-"POT-Creation-Date: 2020-06-09 05:15+0300\n"
+"POT-Creation-Date: 2020-09-10 06:48+0300\n"
 "PO-Revision-Date: 2020-03-02 23:41+0200\n"
 "Last-Translator: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
 "Language-Team: Alexei Andrushievich <vint21h@vint21h.pp.ua>\n"
@@ -26,10 +26,10 @@ msgstr "Конвертер .xls згенерованих django-po2xls у .po"
 msgid "Convert django-xls2po generated .xls files to .po"
 msgstr "Конвертувати файли .xls згенеровані django-po2xls у .po"
 
-#: xls2po/management/commands/xls-to-po.py:47
+#: xls2po/management/commands/xls-to-po.py:45
 msgid "Locale to convert"
 msgstr "Локаль конвертації"
 
-#: xls2po/management/commands/xls-to-po.py:57
+#: xls2po/management/commands/xls-to-po.py:55
 msgid "Be quiet"
 msgstr "Be quiet"
