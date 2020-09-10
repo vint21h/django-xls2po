@@ -4,7 +4,7 @@
 # xls2po/converters.py
 
 
-import pathlib
+from pathlib import Path
 from typing import Any, Dict, List  # pylint: disable=W0611
 
 import xlrd
@@ -28,17 +28,16 @@ class XlsToPo(object):
         """
         Setup conversion.
 
-        :param src: path to ".po" file.
-        :type src: str.
-        :param args: additional args.
-        :type args: List[Any].
-        :param kwargs: additional args.
-        :type kwargs: Dict[str, Any].
-        :return: nothing.
-        :rtype: None.
+        :param src: path to ".po" file
+        :type src: str
+        :param args: additional args
+        :type args: List[Any]
+        :param kwargs: additional args
+        :type kwargs: Dict[str, Any]
+        :raises ConversionError: raised when file does not exists, IO errors or file format problems  # noqa: E501
         """
 
-        self.src = pathlib.Path(src)  # type: pathlib.Path
+        self.src = Path(src)  # type: Path
 
         if not self.src.exists():
             raise ConversionError(f"ERROR: File '{src}' does not exists.")
@@ -51,14 +50,14 @@ class XlsToPo(object):
         self.po = polib.POFile()
 
     @staticmethod
-    def output(src: pathlib.Path) -> pathlib.Path:
+    def output(src: Path) -> Path:
         """
         Create full path for .po file to save parsed translations strings.
 
-        :param src: path to .xls file.
-        :type src: pathlib.Path.
-        :return: path to .po file.
-        :rtype: pathlib.Path.
+        :param src: path to .xls file
+        :type src: Path
+        :return: path to .po file
+        :rtype: Path
         """
 
         return src.parent.joinpath(f"{src.stem}.po")
@@ -66,9 +65,6 @@ class XlsToPo(object):
     def metadata(self) -> None:
         """
         Write metadata to .po.
-
-        :return: nothing.
-        :rtype: None.
         """
 
         sheet = self.xls.sheet_by_name(
@@ -85,9 +81,6 @@ class XlsToPo(object):
     def strings(self) -> None:
         """
         Write strings to .po.
-
-        :return: nothing.
-        :rtype: None.
         """
 
         sheet = self.xls.sheet_by_name(
@@ -107,8 +100,6 @@ class XlsToPo(object):
         :type args: List[Any].
         :param kwargs: additional args.
         :type kwargs: Dict[str, Any].
-        :return: nothing.
-        :rtype: None.
         """
 
         self.metadata()

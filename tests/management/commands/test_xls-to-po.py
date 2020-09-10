@@ -28,7 +28,7 @@ class CommandTest(TestCase):
     """
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDownClass(cls) -> None:
         """
         Tear down.
         """
@@ -43,7 +43,7 @@ class CommandTest(TestCase):
 
         super().tearDownClass()
 
-    def test_convert(self):
+    def test_convert(self) -> None:
         """
         convert method must write converted data to .po files for chosen locale.
         """
@@ -55,7 +55,7 @@ class CommandTest(TestCase):
             expr=pathlib.Path("xls2po/locale/uk/LC_MESSAGES/django.po").exists()
         )
 
-    def test_convert__all(self):
+    def test_convert__all(self) -> None:
         """
         convert method must write converted data to .po files for all locales.
         """
@@ -70,7 +70,7 @@ class CommandTest(TestCase):
             expr=pathlib.Path("xls2po/locale/uk/LC_MESSAGES/django.po").exists()
         )
 
-    def test_input(self):
+    def test_input(self) -> None:
         """
         input method must return original file path but with extension changed to "xls".
         """

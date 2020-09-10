@@ -27,7 +27,7 @@ class XlsToPoTest(TestCase):
     """
 
     @classmethod
-    def setUp(cls):
+    def setUp(cls) -> None:
         """
         Set up.
         """
@@ -35,7 +35,7 @@ class XlsToPoTest(TestCase):
         PoToXls(src="xls2po/locale/uk/LC_MESSAGES/django.po").convert()
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDownClass(cls) -> None:
         """
         Tear down.
         """
@@ -48,7 +48,7 @@ class XlsToPoTest(TestCase):
 
         super().tearDownClass()
 
-    def test___init___raises_conversion_error_exception(self):
+    def test___init___raises_conversion_error_exception(self) -> None:
         """
         __init__ method must raise "ConversionError".
         """
@@ -56,7 +56,7 @@ class XlsToPoTest(TestCase):
         with self.assertRaises(expected_exception=ConversionError):
             XlsToPo(src="locale/uk/LC_MESSAGES/django.xls")
 
-    def test_output(self):
+    def test_output(self) -> None:
         """
         output method must return original file path but with extension changed to "po".
         """
@@ -70,7 +70,7 @@ class XlsToPoTest(TestCase):
 
         self.assertEqual(first=result, second=expected)
 
-    def test_convert__file_exists(self):
+    def test_convert__file_exists(self) -> None:
         """
         convert method must write converted data to .po file.
         """
@@ -81,7 +81,7 @@ class XlsToPoTest(TestCase):
             expr=pathlib.Path("xls2po/locale/uk/LC_MESSAGES/django.po").exists()
         )
 
-    def test_convert(self):
+    def test_convert(self) -> None:
         """
         convert method must write converted data to .po file.
         """

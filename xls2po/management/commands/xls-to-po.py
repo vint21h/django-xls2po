@@ -6,7 +6,7 @@
 
 import sys
 import logging
-import pathlib
+from pathlib import Path
 from typing import Any, Dict, List  # pylint: disable=W0611
 
 from django.conf import settings
@@ -34,10 +34,8 @@ class Command(BaseCommand):
         """
         Add command arguments.
 
-        :param parser: command arguments parser instance.
-        :type parser: django.core.management.base.CommandParser.
-        :return: nothing.
-        :rtype: None.
+        :param parser: command arguments parser instance
+        :type parser: CommandParser
         """
 
         parser.add_argument(
@@ -63,12 +61,10 @@ class Command(BaseCommand):
         """
         Run command.
 
-        :param args: additional args.
-        :type args: List[Any].
-        :param kwargs: additional args.
-        :type kwargs: Dict[str, Any].
-        :return: nothing.
-        :rtype: None.
+        :param args: additional args
+        :type args: List[Any]
+        :param kwargs: additional args
+        :type kwargs: Dict[str, Any]
         """
 
         locale = kwargs.get("locale", self.ALL)
@@ -83,21 +79,19 @@ class Command(BaseCommand):
         """
         Run converter.
 
-        :param locale: locale to process.
+        :param locale: locale to process
         :type locale: str
-        :param args: additional args.
-        :type args: List[Any].
-        :param kwargs: additional args.
-        :type kwargs: Dict[str, Any].
-        :return: nothing.
-        :rtype: None.
+        :param args: additional args
+        :type args: List[Any]
+        :param kwargs: additional args
+        :type kwargs: Dict[str, Any]
         """
 
         quiet = kwargs.get("quiet", False)
 
         for po in find_pos(lang=locale):
             try:
-                XlsToPo(src=str(self.input(src=pathlib.Path(po))), **kwargs).convert()
+                XlsToPo(src=str(self.input(src=Path(po))), **kwargs).convert()
             except ConversionError as error:
                 if not quiet:
                     self.stderr.write(str(error))
@@ -106,14 +100,14 @@ class Command(BaseCommand):
                 sys.exit(-1)
 
     @staticmethod
-    def input(src: pathlib.Path) -> pathlib.Path:
+    def input(src: Path) -> Path:
         """
         Create full path for .xls file.
 
-        :param src: path to .po file.
-        :type src: pathlib.Path.
-        :return: path to .xls file.
-        :rtype: pathlib.Path.
+        :param src: path to .po file
+        :type src: Path
+        :return: path to .xls file
+        :rtype: Path
         """
 
         return src.parent.joinpath(f"{src.stem}.xls")
