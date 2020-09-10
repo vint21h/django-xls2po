@@ -4,15 +4,15 @@
 # xls2po/management/commands/xls-to-po.py
 
 
+import sys
 import logging
 import pathlib
-import sys
 from typing import Any, Dict, List  # pylint: disable=W0611
 
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandParser
-from django.utils.translation import ugettext_lazy as _
 from rosetta.poutil import find_pos
+from django.utils.translation import ugettext_lazy as _
+from django.core.management.base import BaseCommand, CommandParser
 
 from xls2po.converters import XlsToPo
 from xls2po.exceptions import ConversionError

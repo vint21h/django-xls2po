@@ -4,13 +4,13 @@
 # tests/management/commands/test_xls-to-po.py
 
 
-from importlib import import_module
 import os
 import pathlib
+from importlib import import_module
 from typing import List  # pylint: disable=W0611
 
-from django.test import TestCase
 import git
+from django.test import TestCase
 
 
 # po-to-xls and xls-to-po management commands imported on the fly
