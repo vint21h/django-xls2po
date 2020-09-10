@@ -48,7 +48,7 @@ xlrd = "==1.2.0"
 
 
 [packages]
-django = ">=2.2<=3.1"
+django = ">=2.2<=3.2"
 django-appconf = ">=1.0.3"
 django-rosetta = ">=0.9.3"
 polib = ">=1.1.0"
