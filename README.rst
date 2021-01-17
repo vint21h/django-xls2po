@@ -4,7 +4,7 @@
 A django-xls2po documentation
 =============================
 
-|Travis|_ |Coveralls|_ |Requires|_ |pypi-license|_ |pypi-version|_ |pypi-python-version|_ |pypi-django-version|_ |pypi-format|_ |pypi-wheel|_ |pypi-status|_
+|GitHub|_ |Coveralls|_ |Requires|_ |pypi-license|_ |pypi-version|_ |pypi-python-version|_ |pypi-django-version|_ |pypi-format|_ |pypi-wheel|_ |pypi-status|_
 
     *django-xls2po is a Django management command to convert django-po2xls generated .xls files to .po files*
 
@@ -48,8 +48,8 @@ Contacts
 For other authors list see AUTHORS file.
 
 
-.. |Travis| image:: https://travis-ci.org/vint21h/django-xls2po.svg?branch=master
-    :alt: Travis
+.. |GitHub| image:: https://github.com/vint21h/django-xls2po/workflows/build/badge.svg
+    :alt: GitHub
 .. |Coveralls| image:: https://coveralls.io/repos/github/vint21h/django-xls2po/badge.svg?branch=master
     :alt: Coveralls
 .. |Requires| image:: https://requires.io/github/vint21h/django-xls2po/requirements.svg?branch=master
@@ -68,7 +68,7 @@ For other authors list see AUTHORS file.
     :alt: Python wheel support
 .. |pypi-status| image:: https://img.shields.io/pypi/status/django-xls2po
     :alt: Package status
-.. _Travis: https://travis-ci.org/vint21h/django-xls2po/
+.. _GitHub: https://github.com/vint21h/django-xls2po/actions/
 .. _Coveralls: https://coveralls.io/github/vint21h/django-xls2po?branch=master
 .. _Requires: https://requires.io/github/vint21h/django-xls2po/requirements/?branch=master
 .. _pypi-license: https://pypi.org/project/django-xls2po/
