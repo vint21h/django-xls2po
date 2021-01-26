@@ -105,4 +105,4 @@ class XlsToPo(object):
         self.metadata()
         self.strings()
 
-        self.po.save(fpath=self.output(src=self.src))
+        self.po.save(fpath=str(self.output(src=self.src)))
