@@ -4,7 +4,7 @@
 A django-xls2po documentation
 =============================
 
-|GitHub|_ |Coveralls|_ |Requires|_ |pypi-license|_ |pypi-version|_ |pypi-python-version|_ |pypi-django-version|_ |pypi-format|_ |pypi-wheel|_ |pypi-status|_
+|GitHub|_ |Coveralls|_ |pypi-license|_ |pypi-version|_ |pypi-python-version|_ |pypi-django-version|_ |pypi-format|_ |pypi-wheel|_ |pypi-status|_
 
     *django-xls2po is a Django management command to convert django-po2xls generated .xls files to .po files*
 
@@ -52,8 +52,6 @@ For other authors list see AUTHORS file.
     :alt: GitHub
 .. |Coveralls| image:: https://coveralls.io/repos/github/vint21h/django-xls2po/badge.svg?branch=master
     :alt: Coveralls
-.. |Requires| image:: https://requires.io/github/vint21h/django-xls2po/requirements.svg?branch=master
-    :alt: Requires
 .. |pypi-license| image:: https://img.shields.io/pypi/l/django-xls2po
     :alt: License
 .. |pypi-version| image:: https://img.shields.io/pypi/v/django-xls2po
@@ -70,7 +68,6 @@ For other authors list see AUTHORS file.
     :alt: Package status
 .. _GitHub: https://github.com/vint21h/django-xls2po/actions/
 .. _Coveralls: https://coveralls.io/github/vint21h/django-xls2po?branch=master
-.. _Requires: https://requires.io/github/vint21h/django-xls2po/requirements/?branch=master
 .. _pypi-license: https://pypi.org/project/django-xls2po/
 .. _pypi-version: https://pypi.org/project/django-xls2po/
 .. _pypi-django-version: https://pypi.org/project/django-xls2po/

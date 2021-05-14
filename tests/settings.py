@@ -45,25 +45,8 @@ LOCALE_PATHS = ["xls2po/locale"]  # type: List[str]
 
 # add testing related apps
 INSTALLED_APPS = [
-    "django_nose",
     "po2xls",
     "xls2po",
-]  # type: List[str]
-
-# add nose test runner
-TEST_RUNNER = "django_nose.NoseTestSuiteRunner"  # type: str
-
-# configure nose test runner
-NOSE_ARGS = [
-    "--rednose",
-    "--force-color",
-    "--with-timer",
-    "--with-doctest",
-    "--with-coverage",
-    "--cover-inclusive",
-    "--cover-erase",
-    "--cover-package=xls2po",
-    "--logging-clear-handlers",
 ]  # type: List[str]
 
 # configure urls
