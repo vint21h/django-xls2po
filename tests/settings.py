@@ -5,51 +5,51 @@
 
 
 import sys
-import random
 import pathlib
-from typing import Dict, List, Tuple, Union, Iterable  # pylint: disable=W0611
+from random import SystemRandom
+from typing import Dict, List, Tuple, Union, Iterable
 
 
 # black magic to use imports from library code
-sys.path.insert(0, str(pathlib.Path(__file__).absolute().parent.parent.parent))
+path = pathlib.Path(__file__).absolute()
+project = path.parent.parent.parent
+sys.path.insert(0, str(project))
 
 # secret key
-SECRET_KEY = "".join(
+SECRET_KEY: str = "".join(
     [
-        random.choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)")  # nosec
+        SystemRandom().choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)")
         for i in range(50)
     ]
-)  # type: str
+)
 
 # configure databases
-DATABASES = {
+DATABASES: Dict[str, Dict[str, str]] = {
     "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
-}  # type: Dict[str, Dict[str, str]]
+}
 
 # configure templates
-TEMPLATES = [
+TEMPLATES: List[Dict[str, Union[str, List[str], bool, Dict[str, str]]]] = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {},
     }
-]  # type: List[Dict[str, Union[str, List[str], bool, Dict[str, str]]]]
+]
 
 
 # i18n settings
-LANGUAGE_CODE = "en"  # type: str
-LANGUAGES = [("en", "English"), ("uk", "Українська")]  # type: Iterable[Tuple[str, str]]
-DEFAULT_LANGUAGE = "en"  # type: str
-LOCALE_PATHS = ["xls2po/locale"]  # type: List[str]
+LANGUAGE_CODE: str = "en"
+LANGUAGES: Iterable[Tuple[str, str]] = [("en", "English"), ("uk", "Українська")]
+DEFAULT_LANGUAGE: str = "en"
+LOCALE_PATHS: List[str] = ["xls2po/locale"]
 
 # add testing related apps
-INSTALLED_APPS = [
+INSTALLED_APPS: List[str] = [
     "po2xls",
     "xls2po",
-]  # type: List[str]
+]
 
 # configure urls
-ROOT_URLCONF = "xls2po.urls"  # type: str
-
-# xls2po settings
+ROOT_URLCONF: str = "xls2po.urls"

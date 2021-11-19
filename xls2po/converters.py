@@ -5,7 +5,7 @@
 
 
 from pathlib import Path
-from typing import Any, Dict, List  # pylint: disable=W0611
+from typing import Any, Dict, List
 
 import xlrd
 import polib
@@ -13,16 +13,14 @@ import polib
 from xls2po.exceptions import ConversionError
 
 
-__all__ = ["XlsToPo"]  # type: List[str]
+__all__: List[str] = ["XlsToPo"]
 
 
-class XlsToPo(object):
-    """
-    .xls to .to converter.
-    """
+class XlsToPo:
+    """.xls to .to converter."""
 
-    METADATA_SHEET_NAME = "metadata"
-    STRINGS_SHEET_NAME = "strings"
+    METADATA_SHEET_NAME: str = "metadata"
+    STRINGS_SHEET_NAME: str = "strings"
 
     def __init__(self, src: str, *args: List[Any], **kwargs: Dict[str, Any]) -> None:
         """
@@ -34,16 +32,15 @@ class XlsToPo(object):
         :type args: List[Any]
         :param kwargs: additional args
         :type kwargs: Dict[str, Any]
-        :raises ConversionError: raised when file does not exists, IO errors or file format problems  # noqa: E501
-        """
-
-        self.src = Path(src)  # type: Path
+        :raises ConversionError: raised when file does not exists, IO errors or file format problems
+        """  # noqa: E501
+        self.src: Path = Path(src)
 
         if not self.src.exists():
             raise ConversionError(f"ERROR: File '{src}' does not exists.")
 
         try:
-            self.xls = xlrd.open_workbook(filename=self.src)  # type: xlrd.Workbook
+            self.xls: xlrd.Workbook = xlrd.open_workbook(filename=self.src)
         except (ValueError, IOError) as error:
             raise ConversionError(f"ERROR: '{src}' - file problem: {error}")
 
@@ -59,18 +56,14 @@ class XlsToPo(object):
         :return: path to .po file
         :rtype: Path
         """
-
         return src.parent.joinpath(f"{src.stem}.po")
 
     def metadata(self) -> None:
-        """
-        Write metadata to .po.
-        """
-
-        sheet = self.xls.sheet_by_name(
+        """Write metadata to .po."""
+        sheet: xlrd.Worksheet = self.xls.sheet_by_name(
             sheet_name=self.METADATA_SHEET_NAME
-        )  # type: xlrd.Worksheet
-        metadata = {}  # type: Dict[str, str]
+        )
+        metadata: Dict[str, str] = {}
 
         for row_i in range(1, sheet.nrows):
             row = sheet.row_values(rowx=row_i)
@@ -79,17 +72,14 @@ class XlsToPo(object):
         self.po.metadata = metadata
 
     def strings(self) -> None:
-        """
-        Write strings to .po.
-        """
-
-        sheet = self.xls.sheet_by_name(
+        """Write strings to .po."""
+        sheet: xlrd.Worksheet = self.xls.sheet_by_name(
             sheet_name=self.STRINGS_SHEET_NAME
-        )  # type: xlrd.Worksheet
+        )
 
         for row_i in range(1, sheet.nrows):
-            row = sheet.row_values(rowx=row_i)  # type: List[xlrd.sheet.Cell]
-            entry = polib.POEntry(msgid=row[0], msgstr=row[1])  # type: polib.POEntry
+            row: List[xlrd.sheet.Cell] = sheet.row_values(rowx=row_i)
+            entry: polib.POEntry = polib.POEntry(msgid=row[0], msgstr=row[1])
             self.po.append(entry)
 
     def convert(self, *args: List[Any], **kwargs: Dict[str, Any]) -> None:
@@ -101,7 +91,6 @@ class XlsToPo(object):
         :param kwargs: additional args.
         :type kwargs: Dict[str, Any].
         """
-
         self.metadata()
         self.strings()
 

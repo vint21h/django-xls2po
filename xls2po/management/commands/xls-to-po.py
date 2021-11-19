@@ -7,7 +7,7 @@
 import sys
 import logging
 from pathlib import Path
-from typing import Any, Dict, List  # pylint: disable=W0611
+from typing import Any, Dict, List
 
 from django.conf import settings
 from rosetta.poutil import find_pos
@@ -18,16 +18,16 @@ from xls2po.converters import XlsToPo
 from xls2po.exceptions import ConversionError
 
 
-__all__ = ["Command"]  # type: List[str]
+__all__: List[str] = ["Command"]
 
 
 class Command(BaseCommand):
-    """
-    Convert django-xls2po generated .xls files to .po.
-    """
+    """Convert django-xls2po generated .xls files to .po."""
 
-    ALL = "all"
-    help = str(_("Convert django-xls2po generated .xls files to .po"))
+    ALL: str = "all"
+    help: str = str(  # noqa: A003
+        _("Convert django-xls2po generated .xls files to .po")
+    )
     logger = logging.getLogger(name=__name__)
 
     def add_arguments(self, parser: CommandParser) -> None:
@@ -37,7 +37,6 @@ class Command(BaseCommand):
         :param parser: command arguments parser instance
         :type parser: CommandParser
         """
-
         parser.add_argument(
             "--locale",
             "-l",
@@ -66,7 +65,6 @@ class Command(BaseCommand):
         :param kwargs: additional args
         :type kwargs: Dict[str, Any]
         """
-
         locale = kwargs.get("locale", self.ALL)
 
         if all([locale == self.ALL, settings.LANGUAGES]):
@@ -75,7 +73,9 @@ class Command(BaseCommand):
         elif all([settings.LANGUAGES, locale in dict(settings.LANGUAGES)]):
             self.convert(locale=locale, **kwargs)  # type: ignore
 
-    def convert(self, locale: str, *args: List[Any], **kwargs: Dict[str, Any]) -> None:
+    def convert(  # noqa: CCR001
+        self, locale: str, *args: List[Any], **kwargs: Dict[str, Any]
+    ) -> None:
         """
         Run converter.
 
@@ -86,7 +86,6 @@ class Command(BaseCommand):
         :param kwargs: additional args
         :type kwargs: Dict[str, Any]
         """
-
         quiet = kwargs.get("quiet", False)
 
         for po in find_pos(lang=locale):
@@ -100,7 +99,7 @@ class Command(BaseCommand):
                 sys.exit(-1)
 
     @staticmethod
-    def input(src: Path) -> Path:
+    def input(src: Path) -> Path:  # noqa: A003
         """
         Create full path for .xls file.
 
@@ -109,5 +108,4 @@ class Command(BaseCommand):
         :return: path to .xls file
         :rtype: Path
         """
-
         return src.parent.joinpath(f"{src.stem}.xls")
